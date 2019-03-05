@@ -1,6 +1,12 @@
+// Libs
 import { types, applySnapshot } from 'mobx-state-tree';
 import deepmerge from 'deepmerge';
 
+// Models
+import FiltersModel from '~/models/filters.js';
+import BookModel from '~/models/book.js';
+
+// Data
 import books from '~/data/books.json';
 
 let Store = null;
@@ -9,15 +15,30 @@ const initalState = {
     books: books,
     filters: {
         search: '',
-        generes: [],
+        genres: [],
         authors: []
     }
 };
 
 const store = types
-    .model({});
+    .model({
+        filters: FiltersModel,
+        books: types.array(BookModel)
+    }).views(self => ({
+        filteredBooks () {
+            return self.books.filter((book) => {
+                const valueString = book.searchValue();
 
-export function initializeStore(isServer, snapshot = null, state = {}) {
+                return (
+                    self.filters.searchFilter(valueString.toLowerCase()) ||
+                    self.filters.genreFilter(book.Genre.toLowerCase()) ||
+                    self.filters.authorFilter(book.Author.toLowerCase())
+                );
+            });
+        }
+    }));
+
+export function initializeStore(isServer, state = {}) {
     const initialStoreState = deepmerge(initalState, state);
 
     if (isServer) {
@@ -26,9 +47,6 @@ export function initializeStore(isServer, snapshot = null, state = {}) {
 
     if (Store === null) {
         Store = store.create(initialStoreState);
-    }
-    if (snapshot) {
-        applySnapshot(Store, snapshot)
     }
 
     return Store;

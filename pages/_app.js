@@ -1,6 +1,5 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
-import { getSnapshot } from 'mobx-state-tree';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
 import { initializeStore } from '../models/index';
@@ -26,7 +25,6 @@ export default class MyApp extends App {
         }
 
         return {
-            snapshot: getSnapshot(store),
             store: pageProps.store,
             isServer,
             pageProps
@@ -36,7 +34,7 @@ export default class MyApp extends App {
     constructor(props) {
         const isServer = typeof window === 'undefined';
         super(props);
-        this.store = initializeStore(isServer, props.snapshot, props.store);
+        this.store = initializeStore(isServer, props.store);
 
         // BOOG: poor mans development tool, do not include in production.
         if (!isServer && isDevelopment) {
