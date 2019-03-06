@@ -1,5 +1,5 @@
 // Libs
-import { types, applySnapshot } from 'mobx-state-tree';
+import { types } from 'mobx-state-tree';
 import deepmerge from 'deepmerge';
 
 // Models
@@ -31,28 +31,26 @@ const store = types
             // If no filters have been set, show all books.
             if (emptyFilters) return self.books;
 
+            // We need to first filter books by genre and author 
+            // so we can search within the genre and author subsets.
+            // 
+            // Using two filters here is not ideal and should be improved 
             return self.books.filter((book) => {
-                // const valueString = book.searchValue();
-
                 const matchesAuthor = self.filters.authorFilter(book.authorKey());
                 const matchesGenre = self.filters.genreFilter(book.genreKey());
-                // const matchesSearch = self.filters.searchFilter(valueString.toLowerCase());
 
+                // If no genre or author filters are set, show them all.
                 if (self.filters.noGenreFilters() && self.filters.noAuthorFilters()) {
                     return true;
                 }
 
-                return (
-                    matchesAuthor ||
-                    matchesGenre
-                );
+                return (matchesAuthor || matchesGenre);
             }).filter((book) => {
                 const valueString = book.searchValue();
                 const matchesSearch = self.filters.searchFilter(valueString.toLowerCase());
 
-
+                // If no search filter is present, show all books.
                 if (self.filters.noSearchFilter()) return true;
-
 
                 return matchesSearch;
             });
@@ -61,6 +59,8 @@ const store = types
         genreOptions () {
             const optionsDictionary = {};
 
+            // This for loop and the for loop in authorOptions 
+            // can and should be abstracted into one function
             self.books.forEach((book) => {
                 var genreKey = book.genreKey();
 

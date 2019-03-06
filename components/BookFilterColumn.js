@@ -34,6 +34,7 @@ class BookFilterColumn extends React.Component {
                         options={authorOptions} 
                         onSelect={this.props.store.filters.addAuthor}
                         onUnselect={this.props.store.filters.removeAuthor}
+                        showMax={10}
                     />
                 </div>
                 <style>{`

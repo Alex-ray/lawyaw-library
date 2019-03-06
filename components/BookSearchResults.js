@@ -7,6 +7,9 @@ import Card from '~/components/Card';
 @observer
 class BookSearchResults extends React.Component {
     render () {
+        // These observable values are needed in the render function so that
+        // mobx knows that it should update this component when these values change
+        // Do not remove.
         const searchValue = this.props.store.filters.search;
         const genres = this.props.store.filters.genres.toJSON();
         const authors = this.props.store.filters.authors.toJSON();
