@@ -2,6 +2,7 @@
 
 ### To Use
 clone this repository
+`git clone git@github.com:Alex-ray/lawyaw-library.git`
 
 ### Navigte into the repository
 `cd lawyaw-library`
