@@ -1,18 +1,18 @@
-# Lawyaw Library
+## Lawyaw Library
 
-## To Use
+### To Use
 clone this repository
 
-## Navigte into the repository
+### Navigte into the repository
 `cd lawyaw-library`
 
-## Install the dependencies
+### Install the dependencies
 `yarn`
 
-## Run production
+### Run production
 `npm run build && npm run start`
 
-## Run development
+### Run development
 `npm run dev`
 
 
