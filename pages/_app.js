@@ -36,7 +36,7 @@ export default class MyApp extends App {
         super(props);
         this.store = initializeStore(isServer, props.store);
 
-        // BOOG: poor mans development tool, do not include in production.
+        // Poor mans development tool, do not include in production.
         if (!isServer && isDevelopment) {
             window.store = this.store;
         }
