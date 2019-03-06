@@ -21,8 +21,12 @@ class BookSearchResults extends React.Component {
             <div>
                 <Subtitle bold label={resultsTitle} />
                 <div className="search-results-grid">
-                    {books.map(({ Title, Author, Height }) => (
-                        <Card key={`${Title}-${Author}-${Height}`} title={Title} subtitle={Author} />
+                    {books.map((book) => (
+                        <Card 
+                            key={book.searchValue()} 
+                            title={book.Title} 
+                            subtitle={book.formattedAuthor()} 
+                        />
                     ))}
                 </div>
                 <style jsx="true">{`

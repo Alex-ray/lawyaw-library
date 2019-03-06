@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "lawyaw-library",
+    "builds": [
+        {
+            "src": "next.config.js",
+            "use": "@now/next"
+        }
+    ]
+}
