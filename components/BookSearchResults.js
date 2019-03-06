@@ -14,7 +14,7 @@ class BookSearchResults extends React.Component {
         const genres = this.props.store.filters.genres.toJSON();
         const authors = this.props.store.filters.authors.toJSON();
 
-        const books = this.props.store.filteredBooks();
+        const books = this.props.store.searchFilteredBooks();
         const resultsTitle = books.length === 1 ? `${books.length} Result` : `${books.length} Results`;
 
         return (

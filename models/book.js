@@ -11,8 +11,8 @@ const Book = types.model({
     searchValue() {
         return (`
             ${self.Title} 
-            ${self.Author} 
-            ${self.Genre} 
+            ${self.formattedAuthor()} 
+            ${self.formattedGenre()} 
             ${self.Height} 
             ${self.Publisher}`);
     },
