@@ -1,12 +1,12 @@
 import { appearance } from '~/utils/styles';
 
-import BookSearchBar from '~/components/BookSearchBar';
+import BookFilterColumn from '~/components/BookFilterColumn';
 import BookSearchResults from '~/components/BookSearchResults';
 
 export default () => (
     <div className="container">
         <div className="search-bar">
-            <BookSearchBar />
+            <BookFilterColumn />
         </div>
         <div className="search-results">
             <BookSearchResults />
