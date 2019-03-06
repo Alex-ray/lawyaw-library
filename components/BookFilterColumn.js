@@ -10,6 +10,9 @@ import FilterOptions from '~/components/FilterOptions';
 class BookFilterColumn extends React.Component {    
     render () {
         const searchValue = this.props.store.filters.search;
+        const genreOptions = this.props.store.genreOptions();
+        const authorOptions = this.props.store.authorOptions();
+
         return (
             <nav>
                 <SearchInput 
@@ -19,19 +22,19 @@ class BookFilterColumn extends React.Component {
                 />
                 <div className="row">
                     <Title label="Filter By Genre" />
-                    <FilterOptions options={[
-                        { label: 'Non-Fiction', count: 32 },
-                        { label: 'Fantasy', count: 150 },
-                        { label: 'Thriller', count: 36 }
-                    ]} />
+                    <FilterOptions 
+                        options={genreOptions} 
+                        onSelect={this.props.store.filters.addGenre} 
+                        onUnselect={this.props.store.filters.removeGenre} 
+                    />
                 </div>
                 <div className="row">
                     <Title label="Filter By Author" />
-                    <FilterOptions options={[
-                        { label: 'Dickens, Charles', count: 32 },
-                        { label: 'Twain, Mark', count: 150 },
-                        { label: 'Stephen King', count: 36 }
-                    ]} />
+                    <FilterOptions 
+                        options={authorOptions} 
+                        onSelect={this.props.store.filters.addAuthor}
+                        onUnselect={this.props.store.filters.removeAuthor}
+                    />
                 </div>
                 <style>{`
                     .row {
@@ -41,7 +44,7 @@ class BookFilterColumn extends React.Component {
             </nav>
         );
     }
-    
+
     handleSearchChange = (e) => {
         this.props.store.filters.setSearch(e.target.value);
     }

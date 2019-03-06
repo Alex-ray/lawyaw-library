@@ -7,6 +7,10 @@ import Card from '~/components/Card';
 @observer
 class BookSearchResults extends React.Component {
     render () {
+        const searchValue = this.props.store.filters.search;
+        const genres = this.props.store.filters.genres.toJSON();
+        const authors = this.props.store.filters.authors.toJSON();
+
         const books = this.props.store.filteredBooks();
         const resultsTitle = books.length === 1 ? `${books.length} Result` : `${books.length} Results`;
 

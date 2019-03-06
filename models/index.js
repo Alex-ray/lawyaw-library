@@ -26,15 +26,78 @@ const store = types
         books: types.array(BookModel)
     }).views(self => ({
         filteredBooks () {
+            const emptyFilters = self.filters.emptyFilters();
+
+            // If no filters have been set, show all books.
+            if (emptyFilters) return self.books;
+
             return self.books.filter((book) => {
-                const valueString = book.searchValue();
+                // const valueString = book.searchValue();
+
+                const matchesAuthor = self.filters.authorFilter(book.authorKey());
+                const matchesGenre = self.filters.genreFilter(book.genreKey());
+                // const matchesSearch = self.filters.searchFilter(valueString.toLowerCase());
+
+                if (self.filters.noGenreFilters() && self.filters.noAuthorFilters()) {
+                    return true;
+                }
 
                 return (
-                    self.filters.searchFilter(valueString.toLowerCase()) ||
-                    self.filters.genreFilter(book.Genre.toLowerCase()) ||
-                    self.filters.authorFilter(book.Author.toLowerCase())
+                    matchesAuthor ||
+                    matchesGenre
                 );
+            }).filter((book) => {
+                const valueString = book.searchValue();
+                const matchesSearch = self.filters.searchFilter(valueString.toLowerCase());
+
+
+                if (self.filters.noSearchFilter()) return true;
+
+
+                return matchesSearch;
             });
+        },
+
+        genreOptions () {
+            const optionsDictionary = {};
+
+            self.books.forEach((book) => {
+                var genreKey = book.genreKey();
+
+                if (!optionsDictionary[genreKey]) {
+                    optionsDictionary[genreKey] = {
+                        value: genreKey,
+                        label: book.formattedGenre(),
+                        count: 1,
+                        selected: self.filters.genreSelected(genreKey)
+                    };
+                } else {
+                    optionsDictionary[genreKey].count++;
+                }
+            });
+
+            return Object.values(optionsDictionary);
+        },
+
+        authorOptions() {
+            const optionsDictionary = {};
+
+            self.books.forEach((book) => {
+                var authorKey = book.authorKey();
+                if (!optionsDictionary[authorKey]) {
+                    const label = book.formattedAuthor();
+                    optionsDictionary[authorKey] = {
+                        value: authorKey,
+                        label: label,
+                        count: 1,
+                        selected: self.filters.authorSelected(authorKey)
+                    };
+                } else {
+                    optionsDictionary[authorKey].count++;
+                }
+            });
+
+            return Object.values(optionsDictionary);
         }
     }));
 
