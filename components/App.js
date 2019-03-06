@@ -87,7 +87,8 @@ export default ({ children }) => (
           a:focus,
           input:focus,
           button:focus {
-            outline: 1px dashed ${colors.secondary};
+            opacity: 1;
+            outline: none;
           }
 
           ::-webkit-input-placeholder { /* Chrome/Opera/Safari */

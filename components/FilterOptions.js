@@ -10,6 +10,7 @@ export default ({ options }) => (
                 margin: 5px auto;
                 border: ${appearance.border};
                 background: ${colors.surface};
+                box-shadow: ${appearance.boxShadow};
             }
 
             li {

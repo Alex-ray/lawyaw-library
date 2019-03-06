@@ -1,6 +1,7 @@
 import { appearance } from '~/utils/styles';
 
 import BookSearchBar from '~/components/BookSearchBar';
+import BookSearchResults from '~/components/BookSearchResults';
 
 export default () => (
     <div className="container">
@@ -8,7 +9,7 @@ export default () => (
             <BookSearchBar />
         </div>
         <div className="search-results">
-            <p>FiltredBookResults</p>
+            <BookSearchResults />
         </div>
         <style jsx="true">{`
             .container {
@@ -17,7 +18,7 @@ export default () => (
             }
 
             .search-bar {
-                border: ${appearance.border};
+                border-right: ${appearance.border};
                 padding: ${appearance.layoutSpacing};
             }
 

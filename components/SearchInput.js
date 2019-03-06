@@ -14,12 +14,19 @@ export default ({ ...inputProps }) => (
             .container {
                 position: relative;
                 overflow: hidden;
+                opacity: 0.61;
+                transition: opacity 150ms cubic-bezier(0.645, 0.045, 0.355, 1);
+            }
+
+            .container:hover {
+                opacity: 1;
             }
 
             .icon {
                 position: absolute;
                 left: 10px;
-                top: 10px;    
+                top: 10px;
+                z-index: 1; 
             }
 
             .search-input {
@@ -27,6 +34,7 @@ export default ({ ...inputProps }) => (
                 padding-left: 35px;
                 border-color: ${colors.darkGray};
             }
+
         `}</style>
     </div>
 );
