@@ -17,4 +17,4 @@ clone this repository
 `npm run dev`
 
 
-You can also view it live here -> https://lawyaw-library-8jnx3nfoc.now.sh
+You can also view it live here -> https://lawyaw-library-1d31zlceq.now.sh
