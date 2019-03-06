@@ -1,5 +1,6 @@
 import * as React from 'react';
 import App from '~/components/App';
+import BooksSearch from '~/components/BooksSearch';
 
 export default class extends React.Component {
     static async getInitialProps({ query }) {
@@ -23,7 +24,7 @@ export default class extends React.Component {
     render() {
         return (
             <App>
-                <h1>HELLO WORLD</h1>
+                <BooksSearch />
             </App>
         );
     }

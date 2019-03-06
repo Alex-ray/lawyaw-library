@@ -2,9 +2,19 @@ import { colors } from '~/utils/styles';
 
 export default ({ children }) => (
     <main>
-        {children}
+        <header />
+        <section>
+          {children}
+        </section>
+        <style jsx="true">{`
+          header {
+            height: 50px;
+            width: 100%;
+            background: ${colors.secondary}
+          }
+        `}</style>
         <style jsx="true" global>{`
-            @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+          @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
           html { height: 100% }
           html, body {
@@ -26,7 +36,7 @@ export default ({ children }) => (
             overflow: hidden;
           }
 
-          #__next, main {
+          #__next, main, main > section {
             flex-grow: 1;
             display: flex;
             flex-flow: column;
