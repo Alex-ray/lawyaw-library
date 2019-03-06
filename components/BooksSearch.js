@@ -1,10 +1,11 @@
 import { appearance } from '~/utils/styles';
 
+import BookSearchBar from '~/components/BookSearchBar';
 
 export default () => (
     <div className="container">
         <div className="search-bar">
-            <h1>BookSearch</h1>
+            <BookSearchBar />
         </div>
         <div className="search-results">
             <p>FiltredBookResults</p>

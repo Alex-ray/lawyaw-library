@@ -1,4 +1,4 @@
-import { colors } from '~/utils/styles';
+import { colors, appearance, fonts } from '~/utils/styles';
 
 export default ({ children }) => (
     <main>
@@ -20,7 +20,7 @@ export default ({ children }) => (
           html, body {
             margin: 0;
             padding: 0;
-            font-family: Lato, sans-serif, Arial, Helvetica;
+            font-family: ${fonts.families};
             background: ${colors.background};
             color: ${colors.primary};
           }
@@ -54,7 +54,7 @@ export default ({ children }) => (
             text-decoration: none;
             color: ${colors.primary};
             opacity: 0.8;
-            font-size: 12px;
+            font-size: ${fonts.sizeMedium};
           }
 
           a:hover {
@@ -70,6 +70,37 @@ export default ({ children }) => (
             list-style-type: none;
             padding: 0;
             margin: 0;
+          }
+
+          input {
+            padding: 10px;
+            border: ${appearance.border};
+            border-radius: ${appearance.borderRadius};
+            font-size: ${fonts.sizeMedium};
+          }
+
+          button,
+          input {
+            font-family: ${fonts.families}
+          }
+
+          a:focus,
+          input:focus,
+          button:focus {
+            outline: 1px dashed ${colors.secondary};
+          }
+
+          ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: ${colors.primary};
+          }
+          ::-moz-placeholder { /* Firefox 19+ */
+            color: ${colors.primary};
+          }
+          :-ms-input-placeholder { /* IE 10+ */
+            color: ${colors.primary};
+          }
+          :-moz-placeholder { /* Firefox 18- */
+            color: ${colors.primary};
           }
         `}</style>
     </main>
